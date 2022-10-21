@@ -6,12 +6,6 @@ html {
   -webkit-touch-callout: none;
 }
 
-@media (min-width: $screen-sm) {
-  html {
-    font-size: 20px;
-  }
-}
-
 body {
   height: 100%;
   min-width: 320px;

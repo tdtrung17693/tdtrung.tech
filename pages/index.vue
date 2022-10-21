@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { getPosts } from './index.telefunc'
+import { getPosts } from '@/services/index.telefunc'
 // import PostBlock from '@/components/blocks/PostBlock.vue'
 import { Post } from '~/services/data.service'
 import PostList from '@/components/blocks/PostList.vue'
@@ -30,8 +30,9 @@ export default Vue.extend({
   components: { PostList },
   async asyncData({ $config: { gitHubRepoName, gitHubUsername } }) {
     const response = await getPosts(gitHubUsername, gitHubRepoName)
+    
     return {
-      posts: Object.values(response.posts),
+      posts: Object.values(response.posts).filter(p => !!p.title),
     }
   },
   data: () => {

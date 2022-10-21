@@ -29,6 +29,7 @@
     "gunzip-maybe": "^1.4.2",
     "highlight.js": "^11.6.0",
     "marked": "^4.1.1",
+    "node-fetch": "^3.2.10",
     "nuxt": "^2.15.8",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",

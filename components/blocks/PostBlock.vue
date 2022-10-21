@@ -4,7 +4,8 @@
       <a class="btn-back" @click="goBack">« Back</a>
     </div>
     <div class="mb-10">
-        <h1 class="text-4xl">{{ titleize(post.title) }}</h1>
+        <!-- eslint-disable-next-line vue/no-v-html -->
+        <h1 class="text-4xl" v-html="titleize(post.title)"></h1>
         <div class="mt-2">
           <time
             class="flex text-sm text-gray-500"
@@ -55,6 +56,7 @@ export default Vue.extend({
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
     renderMarkdownContent(markdown: string) {
+      console.log(this.post)
       return markdown
     }
   }

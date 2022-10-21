@@ -1,10 +1,36 @@
 import { text } from 'express'
+import slug from 'slug'
 import { telefunc, provideTelefuncContext } from 'telefunc'
 import 'telefunc/async_hooks'
+import { getPosts } from './services/index.telefunc'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  generate: {
+    async routes(callback) {
+      try {
+        const response = await getPosts(
+          process.env.GH_USER,
+          process.env.GH_REPO_NAME
+        )
+        return callback(null, [
+          ...Object.values(response.posts)
+            .map((p) => {
+              if (!p.title) {
+                return { route: '' }
+              }
+              return `/posts/${p.id}-${slug(p.title)}`
+            })
+            .filter((r) => r.length > 0),
+          '/me',
+          '/'
+        ])
+      } catch (error) {
+        callback(error)
+      }
+    }
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -22,10 +48,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '~/assets/styles/base.scss',
-    '~/assets/styles/highlight.scss'
-  ],
+  css: ['~/assets/styles/base.scss', '~/assets/styles/highlight.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [

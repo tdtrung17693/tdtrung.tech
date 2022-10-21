@@ -10,14 +10,15 @@ import matter from 'gray-matter'
 import hljs from 'highlight.js'
 // import dayjs from 'dayjs'
 import {marked} from 'marked'
-import { getPost } from '../post.telefunc'
+import { getPost } from '@/services/post.telefunc'
 import PostBlock from '@/components/blocks/PostBlock.vue'
 import "highlight.js/styles/base16/equilibrium-light.css";
 
 export default Vue.extend({
   components: {PostBlock},
-  async asyncData({ $config: { gitHubRepoName, gitHubUsername, siteDomain }, route }) {
+  async asyncData({ $config: { gitHubRepoName, gitHubUsername, siteDomain }, route, error}) {
     const { slug } = route.params
+    if (!slug) return error({ statusCode: 404, message: 'Post not found' })
     const id: string = slug.split("-")?.[0] || "1"
     const post = await getPost(gitHubUsername, gitHubRepoName, id )
     
@@ -31,6 +32,9 @@ export default Vue.extend({
             const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
             if (level === 1) {
                 // const titleText = text.replace("/", " / ");
+                if (post.title === "no title") {
+                  post.title = text
+                }
                 return `<div class="">
                 </div>`
             } else {
@@ -53,9 +57,11 @@ export default Vue.extend({
     marked.setOptions({
       highlight: (code, lang) => {
         const language = lang || "plaintext"
-        const result = hljs.highlight(code, {language}).value
-        
-        return result
+        if (hljs.getLanguage(language)) {
+          return hljs.highlight(code, {language}, true).value
+        } else {
+          return hljs.highlightAuto(code).value;
+        }
       },
       langPrefix: 'hljs lang-',
     })
