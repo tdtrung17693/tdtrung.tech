@@ -1,5 +1,5 @@
 // posts.json
-import fetch from "node-fetch"
+import fetch from 'node-fetch'
 export type Tag = string
 export type PostId = string
 
@@ -23,7 +23,6 @@ export const getPosts = async (
   ghName: string,
   ghRepo: string
 ): Promise<Posts> => {
-  console.log(ghName, ghRepo)
   const res: Posts = await fetch(
     `https://raw.githubusercontent.com/${ghName}/${ghRepo}/release/db.json`
   ).then((res) => res.json() as Promise<Posts>)
@@ -41,11 +40,11 @@ export const getPost = async (
   const res: Posts = await fetch(
     `https://raw.githubusercontent.com/${ghName}/${ghRepo}/release/db.json`
   ).then((res) => res.json() as Promise<Posts>)
-  
+
   const file: Post = res.posts[postId]
   const fileContent = await fetch(
     `https://raw.githubusercontent.com/${ghName}/${ghRepo}/release${file.path}`
   ).then((res) => res.text())
-  
-  return {...file, content: fileContent}
+
+  return { ...file, content: fileContent }
 }

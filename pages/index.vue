@@ -30,9 +30,9 @@ export default Vue.extend({
   components: { PostList },
   async asyncData({ $config: { gitHubRepoName, gitHubUsername } }) {
     const response = await getPosts(gitHubUsername, gitHubRepoName)
-    
+
     return {
-      posts: Object.values(response.posts).filter(p => !!p.title),
+      posts: Object.values(response.posts).filter((p) => !!p.title),
     }
   },
   data: () => {
@@ -44,18 +44,20 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .hero-banner {
   $hero-banner-gap: 2;
+
   .outer-wrap {
     @apply relative;
+
     padding-bottom: theme('spacing.#{$hero-banner-gap}');
     padding-left: theme('spacing.#{$hero-banner-gap}');
 
-    &:after,
-    &:before {
+    &::after,
+    &::before {
       content: '';
       display: block;
     }
 
-    &:after {
+    &::after {
       width: calc(100% - theme('spacing.#{$hero-banner-gap}'));
       height: 2px;
       background: #000;
@@ -64,7 +66,7 @@ export default Vue.extend({
       left: 0;
     }
 
-    &:before {
+    &::before {
       position: absolute;
       height: 60px;
       width: 2px;
@@ -73,6 +75,7 @@ export default Vue.extend({
       bottom: 0;
     }
   }
+
   .subtitle {
     padding-bottom: theme('spacing.#{$hero-banner-gap}');
   }

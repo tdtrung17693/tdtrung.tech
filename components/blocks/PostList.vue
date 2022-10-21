@@ -61,7 +61,7 @@ export default Vue.extend({
           createdAt: new Date().toString(),
           revised: '', // commit number goes here
           tags: [],
-          path: "",
+          path: '',
         } as Post,
       ],
     },

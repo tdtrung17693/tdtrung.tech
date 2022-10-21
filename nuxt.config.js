@@ -5,7 +5,6 @@ import 'telefunc/async_hooks'
 import { getPosts } from './services/index.telefunc'
 
 export default {
-  // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   generate: {
     async routes(callback) {
@@ -24,27 +23,27 @@ export default {
             })
             .filter((r) => r.length > 0),
           '/me',
-          '/'
+          '/',
         ])
       } catch (error) {
         callback(error)
       }
-    }
+    },
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-app',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -53,7 +52,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/vue-placeholders.js',
-    '~/plugins/vue-observe-visibility.plugin.js'
+    '~/plugins/vue-observe-visibility.plugin.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -68,14 +67,14 @@ export default {
     'nuxt-windicss',
     '@nuxtjs/svg',
     '@nuxtjs/eslint-module',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
   ],
   optimizedImages: {
     optimizeImages: true,
-    handleImages: ['jpeg', 'png', 'webp', 'gif']
+    handleImages: ['jpeg', 'png', 'webp', 'gif'],
   },
   styleResources: {
-    scss: ['~/assets/styles/tokens.scss']
+    scss: ['~/assets/styles/tokens.scss'],
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -89,17 +88,17 @@ export default {
     gitHubRepoName: process.env.GH_REPO_NAME,
     gitHubUsername: process.env.GH_USER,
     linkedinUsername: process.env.LINKEDIN_USER,
-    myEmail: process.env.MY_EMAIL
+    myEmail: process.env.MY_EMAIL,
   },
   privateRuntimeConfig: {
-    gitHubToken: process.env.GH_TOKEN
+    gitHubToken: process.env.GH_TOKEN,
   },
   telemetry: false,
   serverMiddleware: [
     text(), // Telefunc needs the HTTP request body
     telefuncContextMiddleware,
-    telefuncMiddleware
-  ]
+    telefuncMiddleware,
+  ],
 }
 // We provide the Telefunc context for not only for `/_telefunc` but all requests,
 // so that the context is available also during SSR.
