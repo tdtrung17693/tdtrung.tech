@@ -1,0 +1,57 @@
+html {
+  height: 100%;
+  font-size: 18px;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: #0000;
+  -webkit-touch-callout: none;
+}
+
+@media (min-width: $screen-sm) {
+  html {
+    font-size: 20px;
+  }
+}
+
+body {
+  height: 100%;
+  min-width: 320px;
+  font-family: $body-font-family, $sans-serif-fallback-stack;
+  font-weight: $body-font-weight;
+  line-height: 1.5;
+  color: $on-surface-color;
+  background-color: $surface-color;
+  -webkit-text-rendering: optimizelegibility;
+  text-rendering: optimizelegibility;
+  font-synthesis: none;
+  font-kerning: normal;
+  font-feature-settings: $body-font-feature-settings;
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale; 
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $on-surface-color;
+  font-family: $display-font-family, $sans-serif-fallback-stack;
+  font-weight: $display-font-weight;
+  font-feature-settings: $display-font-feature-settings;
+  line-height: 1.2;
+}
+
+:root {
+  --color-logo: #83a598;
+}
+
+a {
+  @apply transition duration-100;
+
+  &:hover {
+    color: var(--color-logo);
+  }
+}

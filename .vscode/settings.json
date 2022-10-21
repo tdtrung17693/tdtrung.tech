@@ -1,0 +1,16 @@
+{
+    "editor.formatOnSave": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "[vue]": {
+      "gitlens.codeLens.scopes": ["document"],
+      "editor.defaultFormatter": "octref.vetur"
+    },
+    "css.lint.unknownAtRules": "ignore",
+    "scss.lint.unknownAtRules": "ignore",
+    "scss.validate": false,
+    "css.validate": false,
+    "less.validate": false,
+    "vetur.validation.style": false
+}

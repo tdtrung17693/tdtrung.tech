@@ -1,0 +1,15 @@
+pre {
+  overflow: auto;
+  line-height: 1.42em;
+  font-size: 13px;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 0 #000;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+@media screen and (min-width: 380px) {
+  pre {
+    font-size: 15px;
+  }
+}
+

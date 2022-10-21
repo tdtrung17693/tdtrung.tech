@@ -1,0 +1,20 @@
+$body-font-family: 'Josefin Sans';
+$body-font-weight: 400;
+$bold-body-font-weight: 500;
+$body-font-feature-settings: 'normal';
+$display-font-family: 'Inter';
+$display-font-weight: 600;
+$display-font-feature-settings: 'normal';
+$surface-color: #eff4f7;
+$on-surface-color: #000;
+$elevated-surface-color: #dfe8ef;
+$on-elevated-surface-color: #ff0;
+$gray-color: #999;
+$shadow: -9px -9px 16px #f8fafe, 9px 9px 16px #ced2db;
+$inner-shadow: inset -9px -9px 16px #f0f3f9, inset 9px 9px 16px #ced2db;
+$small-shadow: -4px -4px 8px #f8fafe, 4px 4px 8px #ced2db;
+$small-inner-shadow: inset -4px -4px 8px #f0f3f9, inset 4px 4px 8px #ced2db,
+  inset -1px -1px 4px #8e8e8e;
+$sans-serif-fallback-stack: -apple-system, blinkmacsystemfont, 'Segoe UI',
+  roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
