@@ -1,24 +1,27 @@
 <template>
   <div>
     <ul>
-      <li v-for="post in posts" :key="post.id">
-        <NuxtLink
+      <li
+        v-for="post in posts"
+        :key="post.id"
+        class="border-b-1 border-black last:border-none"
+      >
+        <nuxt-link
           tag="a"
           :to="`/posts/${post.id}-${slug(post.title)}`"
-          class="block cursor-pointer px-2 py-[1.5rem] border-b-1 border-black"
+          class="block cursor-pointer px-2 py-[1.5rem]"
         >
           <time
             class="flex text-sm text-gray-500"
             :datetime="post.modifiedAt || post.createdAt"
             >{{ formatDate(post.modifiedAt || post.createdAt) }}</time
           >
-          <span class="text-2xl font-bold">
-            {{ titleize(post.title) }}
+          <span class="text-2xl font-bold" v-html="titleize(post.title)">
           </span>
           <template v-if="post.tags.length > 0">
             <span class="block mt-2">
-              <ul class="flex">
-                <li v-for="tag in post.tags" :key="tag" class="mr-2">
+              <ul class="flex flex-wrap gap-2">
+                <li v-for="tag in post.tags" :key="tag">
                   <post-tag :post-tag="tag" />
                 </li>
               </ul>
@@ -26,14 +29,14 @@
           </template>
           <template v-else>
             <span class="block mt-2">
-              <ul class="flex">
+              <ul class="flex flex-wrap">
                 <li class="mr-2">
                   <post-tag post-tag="uncategorized" />
                 </li>
               </ul>
             </span>
           </template>
-        </NuxtLink>
+        </nuxt-link>
       </li>
     </ul>
   </div>

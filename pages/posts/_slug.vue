@@ -8,7 +8,6 @@
 import Vue from 'vue'
 import matter from 'gray-matter'
 import hljs from 'highlight.js'
-// import dayjs from 'dayjs'
 import { marked } from 'marked'
 import { getPost } from '@/services/post.telefunc'
 import PostBlock from '@/components/blocks/PostBlock.vue'
@@ -28,29 +27,13 @@ export default Vue.extend({
 
     const { content } = matter(post.content)
     const customRenderer = {
-      heading: function (text: string, level: 1 | 2 | 3 | 4 | 5 | 6) {
+      heading: function (text: string, level: number) {
         const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-')
+
         if (level === 1) {
-          // const titleText = text.replace("/", " / ");
-          if (post.title === 'no title') {
-            post.title = text
-          }
-          return `<div class="">
-                </div>`
+          return '' // already the title
         } else {
-          return (
-            '<h' +
-            level +
-            '><a class="font-bold" name="' +
-            escapedText +
-            '" href="#' +
-            escapedText +
-            '">' +
-            text +
-            '</a></h' +
-            level +
-            '>'
-          )
+          return `<h${level}><a href="#${escapedText} name="#${escapedText}" class="font-bold">${text}</a></h${level}>`
         }
       },
       link(href: string, _title: string, text: string) {

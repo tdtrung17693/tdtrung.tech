@@ -2,7 +2,7 @@
 <template>
   <div>
     <div>
-      <a class="btn-back" @click="goBack">« Back</a>
+      <nuxt-link class="btn-back" to="/">« Back</nuxt-link>
     </div>
     <div class="mb-10">
       <!-- eslint-disable-next-line vue/no-v-html -->
@@ -24,19 +24,20 @@
     </div>
     <article
       class="post"
-      v-html="renderMarkdownContent($props.post.content)"
+      v-html="renderMarkdownContent(post.content)"
     ></article>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import type { PropType } from 'vue'
+import { defineComponent } from 'vue'
 import PostTag from '@/components/blocks/PostTag.vue'
 import { Post } from '~/services/data.service'
 import { dateTimeMixins } from '~/utils/datetime.utils'
 import { stringMixins } from '~/utils/string.utils'
-export default Vue.extend({
+
+export default defineComponent({
   components: { PostTag },
   mixins: [dateTimeMixins, stringMixins],
   props: {
@@ -54,9 +55,6 @@ export default Vue.extend({
     },
   },
   methods: {
-    goBack() {
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
-    },
     renderMarkdownContent(markdown: string) {
       return markdown
     },
